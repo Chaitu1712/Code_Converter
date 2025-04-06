@@ -1,5 +1,5 @@
 # Use an official OpenJDK base image
-FROM openjdk:17
+FROM openjdk:21
 
 # Set working directory
 WORKDIR /app
@@ -8,7 +8,7 @@ WORKDIR /app
 COPY code_translator /app/code_translator
 
 # Install Python dependencies for Flask
-RUN apt-get update && apt-get install -y python3-pip && pip3 install -r /app/code_translator/requirements.txt
+RUN pip3 install -r /app/code_translator/requirements.txt
 
 # Make the start script executable
 RUN chmod +x /app/code_translator/start.sh
