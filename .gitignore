@@ -11,38 +11,41 @@ backend/code_translator/mvnw.cmd
 
 # dependencies
 /frontend/code-translator-frontend/node_modules
-/frontend/code-translator-frontend/public
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
+/frontend/code-translator-frontend/.pnp
+/frontend/code-translator-frontend/.pnp.*
+/frontend/code-translator-frontend/.yarn/*
+/frontend/code-translator-frontend/!.yarn/patches
+/frontend/code-translator-frontend/!.yarn/plugins
+/frontend/code-translator-frontend/!.yarn/releases
+/frontend/code-translator-frontend/!.yarn/versions
 
 # testing
-/coverage
+/frontend/code-translator-frontend/coverage
+
+# next.js
+/frontend/code-translator-frontend/.next/
+/frontend/code-translator-frontend/out/
+
 # production
-/build
+/frontend/code-translator-frontend/build
 
 # misc
-.DS_Store
-*.pem
+/frontend/code-translator-frontend/.DS_Store
+/frontend/code-translator-frontend/*.pem
 
 # debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
+/frontend/code-translator-frontend/npm-debug.log*
+/frontend/code-translator-frontend/yarn-debug.log*
+/frontend/code-translator-frontend/yarn-error.log*
+/frontend/code-translator-frontend/.pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
 
 # vercel
-.vercel
+/frontend/code-translator-frontend/.vercel
 
 # typescript
-*.tsbuildinfo
-next-env.d.ts
-frontend/code-translator-frontend/.next/
-frontend/code-translator-frontend/out/
+/frontend/code-translator-frontend/*.tsbuildinfo
+/frontend/code-translator-frontend/next-env.d.ts
+frontend/code-translator-frontend/public/window.svg
+/backend/code_translator/src/main/python/translate_microservice/__pycache__
+/frontend/code-translator-frontend/jsconfig.json
