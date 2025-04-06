@@ -1,7 +1,9 @@
 from flask import Flask, request, jsonify
 from translator import translate_code
-
+import logging
 app = Flask(__name__)
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 
 @app.route("/translate", methods=["POST"])
 def translate():
