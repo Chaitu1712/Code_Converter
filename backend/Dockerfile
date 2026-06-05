@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Copy the pre-built JAR from your local machine into the Docker container
 # (Make sure the name matches the exact name of your JAR inside the target folder)
-COPY backend/code_translator/target/code_translator-1.0.0-SNAPSHOT.jar app.jar
+COPY code_translator/target/code_translator-1.0.0-SNAPSHOT.jar app.jar
 
 # Expose the port Spring Boot runs on
 EXPOSE 8080
