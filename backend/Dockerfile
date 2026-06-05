@@ -1,16 +1,15 @@
-# Use an official OpenJDK base image
-FROM openjdk:21
+# Use a lightweight Java 21 runtime
+FROM eclipse-temurin:21-jre-alpine
 
-# Set working directory
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy backend (Spring Boot) and microservice (Flask) into the container
-COPY code_translator /app/code_translator
+# Copy the pre-built JAR from your local machine into the Docker container
+# (Make sure the name matches the exact name of your JAR inside the target folder)
+COPY code_translator/target/code_translator-1.0.0-SNAPSHOT.jar
 
-RUN chmod +x /app/code_translator/start.sh
+# Expose the port Spring Boot runs on
+EXPOSE 8080
 
-# Expose ports (adjust if needed)
-EXPOSE 8080 5001
-
-# Run the startup script
-CMD ["/bin/bash", "/app/code_translator/start.sh"]
+# Run the application (with memory limits for Render's free tier)
+ENTRYPOINT ["java", "-Xmx512m", "-jar", "app.jar"]
