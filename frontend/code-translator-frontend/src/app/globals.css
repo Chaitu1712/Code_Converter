@@ -1,67 +1,123 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-main: #f9f9ff;
+  --bg-card: #ffffff;
+  --bg-editor: #f1f5f9;
+  --bg-input: #f8fafc;
+  --bg-header: #ffffff;
+  --border-main: #e2e8f0;
+  --border-header: #f1f5f9;
+  --border-focus: #4f46e5;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --text-icon: #94a3b8;
+  --primary-btn: #4f46e5;
+  --primary-btn-hover: #4338ca;
+  --primary-btn-text: #ffffff;
+  --primary-btn-shadow: none;
+  --error-bg: #fee2e2;
+  --error-text: #b91c1c;
+  --scroll-track: #f1f5f9;
+  --scroll-thumb: #cbd5e1;
+  --scroll-thumb-hover: #94a3b8;
+  --explanation-icon: #4f46e5;
+  --swap-btn-bg: #ffffff;
+  --swap-btn-hover: #f8fafc;
+}
+
+.dark {
+  --bg-main: #0b1326;
+  --bg-card: #0b1326;
+  --bg-editor: #0b1326;
+  --bg-input: #0b1326;
+  --bg-header: #131b2e;
+  --border-main: #2d3449;
+  --border-header: #2d3449;
+  --border-focus: #c0c1ff;
+  --text-main: #dae2fd;
+  --text-muted: #908fa0;
+  --text-icon: #464554;
+  --primary-btn: #c0c1ff;
+  --primary-btn-hover: #a6a7eb;
+  --primary-btn-text: #1000a9;
+  --primary-btn-shadow: 0 0 15px rgba(192,193,255,0.15);
+  --error-bg: rgba(147, 0, 10, 0.2);
+  --error-text: #ffb4ab;
+  --scroll-track: #0b1326;
+  --scroll-thumb: #2d3449;
+  --scroll-thumb-hover: #464554;
+  --explanation-icon: #ffb783;
+  --swap-btn-bg: #131b2e;
+  --swap-btn-hover: #2d3449;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-background: var(--bg-main);
+  --color-card: var(--bg-card);
+  --color-editor: var(--bg-editor);
+  --color-input: var(--bg-input);
+  --color-header: var(--bg-header);
+  --color-border-main: var(--border-main);
+  --color-border-header: var(--border-header);
+  --color-border-focus: var(--border-focus);
+  --color-text-main: var(--text-main);
+  --color-text-muted: var(--text-muted);
+  --color-text-icon: var(--text-icon);
+  --color-primary-btn: var(--primary-btn);
+  --color-primary-hover: var(--primary-btn-hover);
+  --color-primary-text: var(--primary-btn-text);
+  --color-error-bg: var(--error-bg);
+  --color-error-text: var(--error-text);
+  --color-swap-btn: var(--swap-btn-bg);
+  --color-swap-hover: var(--swap-btn-hover);
+  
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
 body {
-  font-family: 'Inter', sans-serif;
-  background-color: #f8fafc;
-  color: #333;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 textarea {
-  font-family: 'Courier New', monospace;
-  background-color: #1e1e1e;
-  color: #ffffff;
-  padding: 10px;
+  outline: none;
 }
-/* Scrollbar Styling for WebKit Browsers (Chrome, Edge, Safari) */
-::-webkit-scrollbar {
+
+/* Dynamic Scrollbars */
+::-webkit-scrollbar, 
+.custom-scrollbar::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
-
-::-webkit-scrollbar-track {
-  background: #1f2937; /* Dark background */
-  border-radius: 10px;
+::-webkit-scrollbar-track, 
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--scroll-track);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb, 
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--scroll-thumb);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover, 
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--scroll-thumb-hover);
 }
 
-::-webkit-scrollbar-thumb {
-  background: #4b5563; /* Gray thumb */
-  border-radius: 10px;
-  border: 2px solid #1f2937; /* Adds spacing around thumb */
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #6b7280; /* Slightly lighter on hover */
-}
-
-/* Firefox Scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #4b5563 #1f2937;
+  scrollbar-color: var(--scroll-thumb) var(--scroll-track);
 }
-
 
 html {
   scroll-behavior: smooth;
 }
+
 #__next-build-watcher {
   display: none !important;
 }

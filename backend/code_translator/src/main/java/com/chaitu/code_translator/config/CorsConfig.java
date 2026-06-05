@@ -13,7 +13,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/api/**")  // Apply CORS to API routes
-                        .allowedOrigins("https://code-converter-dun.vercel.app/")  // Allow frontend
+                        .allowedOrigins("https://code-converter-dun.vercel.app","http://localhost:3000")  // Allow frontend
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")  // Allow all methods
                         .allowedHeaders("*")
                         .allowCredentials(true);
