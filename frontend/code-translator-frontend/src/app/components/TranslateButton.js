@@ -12,7 +12,7 @@ export default function TranslateButton({ code, sourceLang, targetLang, setTrans
     setLoading(true);
     setError("");
     try {
-      const response = await axios.post("http://localhost:8080/api/translate", {
+      const response = await axios.post("https://code-converter-c61n.onrender.com/api/translate", {
         sourceLanguage: sourceLang,
         targetLanguage: targetLang,
         code: code,
