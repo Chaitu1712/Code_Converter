@@ -9,7 +9,7 @@ venv/
 ### VS Code ###
 .vscode/
 backend/code_translator/mvnw.cmd
-
+application.properties
 # dependencies
 /frontend/code-translator-frontend/node_modules
 /frontend/code-translator-frontend/.pnp
