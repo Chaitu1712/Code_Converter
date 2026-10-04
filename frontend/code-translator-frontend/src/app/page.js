@@ -80,7 +80,6 @@ export default function Home() {
     }
   };
 
-  // Direct translation handler shared by button click and Ctrl+Enter
   const handleTranslate = async () => {
     if (loading) return;
     if (!code.trim()) {
