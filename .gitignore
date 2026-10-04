@@ -6,6 +6,7 @@ target/
 !**/src/test/**/target/
 venv/
 .mvn/wrapper/
+
 ### VS Code ###
 .vscode/
 backend/code_translator/mvnw.cmd
@@ -50,3 +51,5 @@ application.properties
 frontend/code-translator-frontend/public/window.svg
 /backend/code_translator/src/main/python/translate_microservice/__pycache__
 /frontend/code-translator-frontend/jsconfig.json
+
+Context/

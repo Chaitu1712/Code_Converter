@@ -17,9 +17,26 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  // suppressHydrationWarning added to prevent mismatch before client-side theme loads
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Run before paint to prevent theme flash */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const savedTheme = localStorage.getItem('theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                  document.documentElement.classList.add('dark');
+                } else {
+                  document.documentElement.classList.remove('dark');
+                }
+              } catch (_) {}
+            `,
+          }}
+        />
+      </head>
       <body className={`${inter.variable} ${jetbrainsMono.variable} antialiased font-sans min-h-screen`}>
         {children}
       </body>
