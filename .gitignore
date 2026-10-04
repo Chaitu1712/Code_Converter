@@ -6,7 +6,7 @@ target/
 !**/src/test/**/target/
 venv/
 .mvn/wrapper/
-
+backend/code_translator/target/
 ### VS Code ###
 .vscode/
 backend/code_translator/mvnw.cmd
