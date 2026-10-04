@@ -1,128 +1,160 @@
-# AI Code Translator
+# AI Code Translator 🚀
 
-An AI-powered tool to translate code between **Java** and **Python** using the power of Gemini API for code conversion and explanation. The project is built with a modern full-stack architecture that includes:
+An intelligent, multi-language code translation tool that converts source code between **Python**, **Java**, **JavaScript**, and **C++** with high precision using Google's native Gemini API.
 
-- **Backend:** Spring Boot (Java) for API orchestration
-- **AI Processing:** Flask microservice using google Gemini API for translation
-- **Frontend:** Next.js (React) with Tailwind CSS for a sleek, responsive UI
-
----
-
-## Table of Contents
-
-- [Features](#features)
-- [Architecture](#architecture)
-- [Tech Stack](#tech-stack)
-- [Installation & Setup](#installation--setup)
-  - [Flask Microservice](#flask-microservice)
-  - [Backend (Spring Boot)](#backend-spring-boot)
-  - [Frontend (Next.js)](#frontend-nextjs)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+Built with a modern full-stack architecture featuring a **Spring Boot** backend orchestrating calls via native HTTP client, and a **Next.js** frontend with custom syntax highlighting, bidirectional smart-swap, and code download capabilities.
 
 ---
 
 ## Features
 
-- **Bidirectional Code Translation:** Convert Java to Python and Python to Java.
-- **Syntax Correction & Explanation:** Provides a corrected version of the code along with an explanation of the changes.
-- **GitHub Integration:** Fetch code from GitHub and display the translated version with an option to download.
-- **Modern UI:** Built with Next.js, featuring syntax highlighting, smooth scrolling, and a refined UI experience.
-- **Stateless Architecture:** Simplified deployment without the need for a dedicated database.
-
----
-
-## Architecture
-
-The system is composed of three main components:
-
-1. **Spring Boot Backend:**  
-   - Exposes REST APIs for code translation and GitHub integration.
-   - Acts as the central hub that orchestrates calls between the UI and the AI processing layer.
-
-2. **Flask Microservice:**  
-   - Powered by google's Gemini API.
-   - Translates code between Java and Python.
-   - Returns the translated code along with detailed explanations.
-
-3. **Next.js Frontend:**  
-   - Provides a user-friendly interface for inputting code, selecting languages, and displaying results.
-   - Built with modern features such as Tailwind CSS, dynamic syntax highlighting, and smooth UI interactions.
+- 🔄 **Multi-Language Translation:** Convert between Python, Java, JavaScript, and C++ with accurate idiomatic syntax.
+- 💡 **AI Explanations:** Get clear explanations of algorithmic complexity, data structures, and language-specific changes.
+- ⚡ **Interactive Code Editor:**
+  - `Tab` key indentation support (inserts 2 spaces without losing focus).
+  - Keyboard shortcut: Run translations instantly with `Ctrl + Enter` (or `Cmd + Enter`).
+  - Live line and character counter.
+- 🔁 **Smart Bidirectional Swap:** Swapping languages automatically transfers the generated code back into the input editor for instant round-trip testing.
+- 📂 **Quick-Load Code Samples:** Test functions (Fibonacci, Binary Search, Debounce) with a single click.
+- 💾 **Export & Download:** Save translated code directly with proper file extensions (`.py`, `.java`, `.js`, `.cpp`).
+- 🌓 **Theme Persistence:** Seamless dark/light mode toggle with zero hydration flash (FOUC).
 
 ---
 
 ## Tech Stack
 
 - **Backend:**  
-  - Java, Spring Boot, Maven  
-  - RESTful APIs
-
-- **AI Processing:**  
-  - Python, Flask  
-  - Google Gemini API
+  - Java 21, Spring Boot
+  - Spring `RestClient` (native HTTP client)
+  - Google Gemini API (`generateContent` with JSON schema enforcement)
+  - Maven, Docker (multi-stage build)
 
 - **Frontend:**  
-  - Next.js (React)  
-  - Tailwind CSS, Axios, Prism.js (for syntax highlighting)
+  - Next.js (App Router, Turbopack)
+  - React 19, Tailwind CSS
+  - Prism.js / `react-syntax-highlighter`
+  - Axios
 
 ---
 
-## Installation & Setup
-**Clone the repository:**
-    ```bash
-       https://github.com/Chaitu1712/Code_Converter.git
-    ```
-### Flask Microservice
-Navigate to the Flask microservice directory:
-1. **Navigate to the Flask microservice directory:**
-    ```bash
-    cd ../translate_microservice
-    ```
-2. **Install dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-### Backend (Spring Boot)
-1. **Navigate to backend directory:**
+## Project Structure
+
+```text
+.
+├── backend
+│   └── code_translator
+│       ├── Dockerfile              # Multi-stage production container build
+│       ├── pom.xml                 # Maven project configuration
+│       └── src
+│           └── main
+│               ├── java/com/chaitu/code_translator
+│               │   ├── CodeTranslatorApplication.java
+│               │   ├── config/CorsConfig.java
+│               │   ├── controllers/TranslationController.java
+│               │   ├── model/
+│               │   │   ├── TranslationRequest.java
+│               │   │   └── TranslationResponse.java
+│               │   └── services/TranslationService.java
+│               └── resources
+│                   └── application.properties
+│
+└── frontend
+    └── code-translator-frontend
+        ├── src
+        │   └── app
+        │       ├── components/
+        │       │   ├── CodeInput.js
+        │       │   ├── LanguageSelector.js
+        │       │   ├── ResultDisplay.js
+        │       │   └── TranslateButton.js
+        │       ├── globals.css
+        │       ├── layout.js
+        │       └── page.js
+        └── package.json
+```
+
+---
+
+## Local Development & Setup
+
+### 1. Prerequisites
+
+- **JDK 21** installed
+- **Node.js 18+** & `npm`
+- A **Google Gemini API Key** (from [Google AI Studio](https://aistudio.google.com/))
+
+### 2. Backend Setup (Spring Boot)
+
+1. Navigate to the backend directory:
+
    ```bash
    cd backend/code_translator
-2. **Build and Run:**
-    ```bash
-    mvn clean install
-    mvn spring-boot:run
-    ```
-Note: The Spring Boot backend will automatically call the Flask microservice.
-### Frontend
-1. **Navigate to the frontend directory:**
-    ```bash
-    cd ../frontend/code-translator-frontend
-    ```
-2. **Install dependencies:**
-    ```bash
-    npm install
-    ```
-3. **Run development server:**
-    ```bash
-    npm run dev
-    ```
-4. **Access the UI: Open your browser and navigate to http://localhost:3000.**
+   ```
+
+2. Open `src/main/resources/application.properties` and add your API Key:
+
+   ```properties
+   gemini.api.key=YOUR_ACTUAL_GEMINI_API_KEY
+   gemini.api.model=gemini-1.5-flash
+   ```
+
+3. Run the backend service:
+
+   ```bash
+   ./mvnw clean spring-boot:run
+   ```
+
+   *The backend will boot up at `http://localhost:8080`.*
+
+### 3. Frontend Setup (Next.js)
+
+1. Open a new terminal tab and navigate to the frontend directory:
+
+   ```bash
+   cd frontend/code-translator-frontend
+   ```
+
+2. Create a `.env.local` file pointing to the local backend:
+
+   ```bash
+   echo "NEXT_PUBLIC_API_URL=http://localhost:8080" > .env.local
+   ```
+
+3. Install dependencies and start the development server:
+
+   ```bash
+   npm install
+   npm run dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
 ---
-## Usage
-1. **Enter Code:**
-- Paste your Java or Python code into the input field.
-- Select the source and target languages using the language selector.
-2. **Translate:**
-- Click the "Convert Code" button.
-- The system sends your code to the backend, which in turn calls the Flask microservice for translation.
-- The translated code and explanation are displayed on the UI with syntax highlighting and smooth scrolling.
+
+## Production Deployment
+
+### Backend to Render (Docker)
+
+1. Create a new **Web Service** on [Render](https://render.com/).
+2. Connect your GitHub repository.
+3. Set the following fields:
+   - **Root Directory:** `backend/code_translator`
+   - **Environment:** `Docker`
+   - **Plan:** `Free`
+4. Add the required Environment Variable:
+   - `GEMINI_API_KEY` = `<your-gemini-api-key>`
+   - `GEMINI_MODEL` = `gemini-1.5-flash`
+5. Click **Deploy Web Service**.
+
+### Frontend to Vercel
+
+1. Import `frontend/code-translator-frontend` into [Vercel](https://vercel.com/).
+2. Set Environment Variable:
+   - `NEXT_PUBLIC_API_URL` = `<your-render-backend-url>` (e.g., `https://code-translator-backend.onrender.com`)
+3. Deploy!
+
 ---
-## Contributing
-Contributions are welcome!
-- Fork the repository.
-- Create a new branch for your feature or bug fix.
-- Open a pull request describing your changes.
-- Follow the existing code style and write tests for new features.
----
+
 ## License
-This project is open source and available under the MIT License.
+
+This project is open source and available under the [MIT License](LICENSE).
